@@ -1,17 +1,19 @@
 package com.qmetric.dojo;
 
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.CsvSource;
 
 import java.util.Map;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 class SymbolReplacerTest {
-    @Test
-    void translateSentence() {
-        var sentenceToTranslate = "Welcome to this $COMPANY $ACTIVITY";
-        var expectedSentence = "Welcome to this Policy Expert coding dojo";
-
+    @ParameterizedTest
+    @CsvSource({
+            "Welcome to this $COMPANY $ACTIVITY, Welcome to this Policy Expert coding dojo",
+            "This $NONEXISTENT_SYMBOL should not be replaced, This $NONEXISTENT_SYMBOL should not be replaced"
+    })
+    void translateSentence(String sentenceToTranslate, String expectedSentence) {
         var result = new TestSymbolReplacer(sentenceToTranslate).replace();
         assertThat(result).isEqualTo(expectedSentence);
     }

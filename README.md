@@ -2,6 +2,12 @@
 
 A place to put bits of code for coding dojo sessions.
 
+## Run tests
+
+```
+./gradlew clean test
+```
+
 ## First session: Extract till you drop
 
 Inspired by [Uncle Bob's blog from 2009 on Clean Code](https://sites.google.com/site/unclebobconsultingllc/one-thing-extract-till-you-drop),

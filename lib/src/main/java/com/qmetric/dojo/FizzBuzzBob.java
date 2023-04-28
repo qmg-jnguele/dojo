@@ -2,11 +2,11 @@ package com.qmetric.dojo;
 
 import java.util.ArrayList;
 
-public class FizzBuzz {
+public class FizzBuzzBob {
     private final int count;
     private ArrayList<String> values;
 
-    public FizzBuzz(int count) {
+    public FizzBuzzBob(int count) {
         this.count = count;
         resetValues();
     }
@@ -28,14 +28,28 @@ public class FizzBuzz {
     }
 
     private void process(int number) {
-        if (isMultipleOfFiveAndSeven(number))
-            appendFizzBuzz();
+        if (isMultipleOfFiveAndSevenAndThree(number))
+            appendFizzBuzzBob();
         else if (isMultipleOfFive(number))
             appendFizz();
         else if (isMultipleOfSeven(number))
             appendBuzz();
+        else if (isMultipleOfThree(number))
+            appendBob();
         else
             appendNumber(number);
+    }
+
+    private void appendBob() {
+        values.add("bob");
+    }
+
+    private boolean isMultipleOfThree(int number) {
+        return isMultipleOf(number, 3);
+    }
+
+    private static boolean isMultipleOf(int number, int x) {
+        return (number % x) == 0;
     }
 
     private void appendNumber(int i) {
@@ -50,23 +64,23 @@ public class FizzBuzz {
         values.add("fizz");
     }
 
-    private void appendFizzBuzz() {
-        values.add("fizzbuzz");
+    private void appendFizzBuzzBob() {
+        values.add("fizzbuzzbob");
     }
 
     private void resetValues() {
         values = new ArrayList<>();
     }
 
-    private static boolean isMultipleOfSeven(int i) {
-        return (i % 7) == 0;
+    private static boolean isMultipleOfSeven(int number) {
+        return isMultipleOf(number, 7);
     }
 
-    private static boolean isMultipleOfFive(int i) {
-        return (i % 5) == 0;
+    private static boolean isMultipleOfFive(int number) {
+        return isMultipleOf(number, 5);
     }
 
-    private static boolean isMultipleOfFiveAndSeven(int i) {
+    private static boolean isMultipleOfFiveAndSevenAndThree(int i) {
         return isMultipleOfFive(i) && isMultipleOfSeven(i);
     }
 }
